@@ -1,913 +1,220 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Canessa — Proyectos, ideas y familia y más</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
-        rel="stylesheet" />
-    <style>
-        :root {
-            --blanc: #F5F3EF;
-            --pearl: #E8E4DC;
-            --silver: #C9C5BC;
-            --stone: #8C887F;
-            --charcoal: #3A3835;
-            --caviar: #1C1B19;
-        }
-
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--silver);
-            color: var(--charcoal);
-            overflow-x: hidden;
-        }
-
-        /* NAV */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 48px;
-            background: transparent;
-            transition: background 0.4s, padding 0.4s;
-        }
-
-        nav.scrolled {
-            background: rgba(201, 197, 188, 0.92);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 14px 48px;
-        }
-
-        .nav-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 20px;
-            font-weight: 400;
-            color: var(--caviar);
-            letter-spacing: -0.5px;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-size: 13px;
-            font-weight: 400;
-            color: var(--stone);
-            text-decoration: none;
-            letter-spacing: 0.5px;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--caviar);
-        }
-
-        .nav-toggle {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .nav-toggle span {
-            display: block;
-            width: 22px;
-            height: 1px;
-            background: var(--charcoal);
-            transition: transform 0.3s;
-        }
-
-        /* HERO */
-        .hero {
-            position: relative;
-            height: 100vh;
-            min-height: 600px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            background: var(--silver);
-        }
-
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            will-change: transform;
-        }
-
-        .hero-circle {
-            position: absolute;
-            border-radius: 50%;
-            border: 0.5px solid var(--stone);
-            opacity: 0.25;
-        }
-
-        .hero-circle-1 {
-            width: 520px;
-            height: 520px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .hero-circle-2 {
-            width: 720px;
-            height: 720px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .hero-circle-3 {
-            width: 920px;
-            height: 920px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            padding: 0 24px;
-            will-change: transform;
-        }
-
-        .hero-eyebrow {
-            font-size: 11px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--stone);
-            margin-bottom: 20px;
-            opacity: 0;
-            transform: translateY(16px);
-            animation: fadeUp 0.8s 0.2s forwards;
-        }
-
-        .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(64px, 10vw, 120px);
-            font-weight: 400;
-            line-height: 1;
-            letter-spacing: -3px;
-            color: var(--caviar);
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 0.9s 0.4s forwards;
-        }
-
-        .hero-title em {
-            font-style: italic;
-            color: var(--stone);
-        }
-
-        .hero-sub {
-            margin-top: 20px;
-            font-size: 15px;
-            font-weight: 300;
-            color: var(--stone);
-            letter-spacing: 0.3px;
-            opacity: 0;
-            transform: translateY(16px);
-            animation: fadeUp 0.8s 0.6s forwards;
-        }
-
-        .hero-scroll {
-            position: absolute;
-            bottom: 36px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            opacity: 0;
-            animation: fadeUp 0.8s 1s forwards;
-        }
-
-        .hero-scroll span {
-            font-size: 10px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--stone);
-        }
-
-        .scroll-line {
-            width: 1px;
-            height: 40px;
-            background: var(--stone);
-            animation: scrollPulse 2s infinite;
-        }
-
-        @keyframes scrollPulse {
-
-            0%,
-            100% {
-                opacity: 0.3;
-                transform: scaleY(1);
-            }
-
-            50% {
-                opacity: 1;
-                transform: scaleY(0.6);
-            }
-        }
-
-        @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* SECTIONS */
-        section {
-            padding: 100px 48px;
-        }
-
-        .section-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .section-label {
-            font-size: 10px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--stone);
-            margin-bottom: 48px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .section-label::after {
-            content: '';
-            flex: 1;
-            height: 0.5px;
-            background: var(--stone);
-            opacity: 0.4;
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(32px, 5vw, 52px);
-            font-weight: 400;
-            letter-spacing: -1px;
-            color: var(--caviar);
-            margin-bottom: 16px;
-            line-height: 1.1;
-        }
-
-        .section-desc {
-            font-size: 15px;
-            font-weight: 300;
-            color: var(--stone);
-            max-width: 480px;
-            line-height: 1.7;
-            margin-bottom: 48px;
-        }
-
-        /* BLOG */
-        #blog {
-            background: var(--pearl);
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 16px;
-        }
-
-        .blog-card {
-            background: var(--silver);
-            border-radius: 12px;
-            padding: 28px;
-            border: 0.5px solid rgba(140, 136, 127, 0.3);
-            cursor: pointer;
-            transition: transform 0.3s, background 0.3s;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .blog-card.visible {
-            animation: fadeUp 0.6s forwards;
-        }
-
-        .blog-card:hover {
-            transform: translateY(-4px);
-            background: var(--blanc);
-        }
-
-        .blog-card-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 14px;
-        }
-
-        .blog-card-date {
-            font-size: 11px;
-            color: var(--stone);
-            letter-spacing: 0.5px;
-        }
-
-        .blog-card-tag {
-            font-size: 10px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            padding: 3px 10px;
-            border-radius: 100px;
-            border: 0.5px solid var(--stone);
-            color: var(--stone);
-        }
-
-        .blog-card-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 18px;
-            font-weight: 400;
-            color: var(--caviar);
-            line-height: 1.4;
-            margin-bottom: 10px;
-        }
-
-        .blog-card-excerpt {
-            font-size: 13px;
-            font-weight: 300;
-            color: var(--stone);
-            line-height: 1.6;
-        }
-
-        /* GALERÍA */
-        #galeria {
-            background: var(--silver);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: auto;
-            gap: 10px;
-        }
-
-        .gallery-item {
-            border-radius: 8px;
-            overflow: hidden;
-            background: var(--pearl);
-            border: 0.5px solid rgba(140, 136, 127, 0.3);
-            aspect-ratio: 4/3;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: transform 0.3s;
-            opacity: 0;
-            transform: scale(0.95);
-        }
-
-        .gallery-item.visible {
-            animation: scaleIn 0.5s forwards;
-        }
-
-        @keyframes scaleIn {
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.02);
-        }
-
-        .gallery-item.tall {
-            grid-row: span 2;
-            aspect-ratio: unset;
-        }
-
-        .gallery-placeholder {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            color: var(--stone);
-        }
-
-        .gallery-placeholder svg {
-            width: 28px;
-            height: 28px;
-            stroke: var(--stone);
-            fill: none;
-            stroke-width: 1;
-        }
-
-        .gallery-placeholder span {
-            font-size: 11px;
-            letter-spacing: 0.5px;
-        }
-
-        /* TIENDA */
-        #tienda {
-            background: var(--pearl);
-        }
-
-        .shop-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 16px;
-        }
-
-        .shop-card {
-            background: var(--silver);
-            border-radius: 12px;
-            border: 0.5px solid rgba(140, 136, 127, 0.3);
-            overflow: hidden;
-            transition: transform 0.3s;
-            opacity: 0;
-            transform: translateY(24px);
-        }
-
-        .shop-card.visible {
-            animation: fadeUp 0.6s forwards;
-        }
-
-        .shop-card:hover {
-            transform: translateY(-3px);
-        }
-
-        .shop-card-img {
-            height: 180px;
-            background: var(--blanc);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-bottom: 0.5px solid rgba(140, 136, 127, 0.2);
-        }
-
-        .shop-card-img svg {
-            width: 40px;
-            height: 40px;
-            stroke: var(--stone);
-            fill: none;
-            stroke-width: 1;
-        }
-
-        .shop-card-body {
-            padding: 20px;
-        }
-
-        .shop-card-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 16px;
-            font-weight: 400;
-            color: var(--caviar);
-            margin-bottom: 4px;
-        }
-
-        .shop-card-desc {
-            font-size: 12px;
-            font-weight: 300;
-            color: var(--stone);
-            margin-bottom: 16px;
-            line-height: 1.5;
-        }
-
-        .shop-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 12px;
-            font-weight: 400;
-            letter-spacing: 0.5px;
-            color: #fff;
-            background: #25D366;
-            border: none;
-            border-radius: 100px;
-            padding: 8px 16px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: opacity 0.2s;
-        }
-
-        .shop-btn:hover {
-            opacity: 0.85;
-        }
-
-        .shop-btn svg {
-            width: 14px;
-            height: 14px;
-            fill: #fff;
-        }
-
-        /* FOOTER */
-        footer {
-            padding: 40px 48px;
-            background: var(--caviar);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-
-        .footer-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 18px;
-            color: var(--silver);
-            font-weight: 400;
-        }
-
-        .footer-info {
-            font-size: 12px;
-            color: var(--stone);
-            letter-spacing: 0.3px;
-        }
-
-        /* REVEAL OBSERVER */
-        .reveal {
-            opacity: 0;
-            transform: translateY(28px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* MOBILE */
-        @media (max-width: 768px) {
-            nav {
-                padding: 16px 24px;
-            }
-
-            nav.scrolled {
-                padding: 12px 24px;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .nav-toggle {
-                display: flex;
-            }
-
-            .nav-links.open {
-                display: flex;
-                flex-direction: column;
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: var(--silver);
-                align-items: center;
-                justify-content: center;
-                gap: 32px;
-                z-index: 99;
-            }
-
-            .nav-links.open a {
-                font-size: 22px;
-                color: var(--charcoal);
-            }
-
-            section {
-                padding: 72px 24px;
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .gallery-item.tall {
-                grid-row: span 1;
-                aspect-ratio: 4/3;
-            }
-
-            footer {
-                padding: 32px 24px;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation: none !important;
-                transition: none !important;
-            }
-
-            .reveal {
-                opacity: 1;
-                transform: none;
-            }
-        }
-    </style>
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-</head>
-
-<body>
-
-    <!-- NAV -->
-    <nav id="nav">
-        <a class="nav-logo" href="#">Canessa</a>
-        <ul class="nav-links" id="nav-links">
-            <li><a href="#blog">Blog</a></li>
-            <li><a href="#galeria">Galería</a></li>
-            <li><a href="#tienda">Tienda</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-        </ul>
-        <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
-            <span></span><span></span><span></span>
-        </button>
-    </nav>
-
-    <!-- HERO -->
-    <section class="hero" id="hero">
-        <div class="hero-bg" id="hero-bg">
-            <div class="hero-circle hero-circle-1"></div>
-            <div class="hero-circle hero-circle-2"></div>
-            <div class="hero-circle hero-circle-3"></div>
-        </div>
-        <div class="hero-content" id="hero-content">
-            <p class="hero-eyebrow">Proyectos · Familia · Ideas</p>
-            <h1 class="hero-title">Cris<em>tian</em><br>Canessa</h1>
-            <p class="hero-sub">Un espacio personal desde Iquique, Chile</p>
-        </div>
-        <div class="hero-scroll">
-            <span>Scroll</span>
-            <div class="scroll-line"></div>
-        </div>
-    </section>
-
-    <!-- BLOG -->
-    <section id="blog">
-        <div class="section-inner">
-            <div class="section-label reveal">Blog</div>
-            <h2 class="section-title reveal">Últimas entradas</h2>
-            <p class="section-desc reveal">Reflexiones, proyectos y todo lo que vale la pena escribir.</p>
-            <div class="blog-grid">
-                <div class="blog-card">
-                    <div class="blog-card-meta">
-                        <span class="blog-card-date">Jun 2026</span>
-                        <span class="blog-card-tag">Personal</span>
-                    </div>
-                    <div class="blog-card-title">Bienvenido a Canessa.blog</div>
-                    <div class="blog-card-excerpt">Este es el comienzo. Un espacio para documentar ideas, proyectos y
-                        momentos que merecen ser recordados.</div>
+---
+layout: default
+title: Inicio
+---
+
+<!-- HERO -->
+<section class="hero" id="hero">
+    <div class="hero-bg" id="hero-bg">
+        <div class="hero-circle hero-circle-1"></div>
+        <div class="hero-circle hero-circle-2"></div>
+        <div class="hero-circle hero-circle-3"></div>
+    </div>
+    <div class="hero-content" id="hero-content">
+        <p class="hero-eyebrow">Proyectos · Familia · Ideas</p>
+        <h1 class="hero-title">Cris<em>tian</em><br>Canessa</h1>
+        <p class="hero-sub">Un espacio personal desde Iquique, Chile 🌊</p>
+    </div>
+    <div class="hero-scroll">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+    </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog">
+    <div class="section-inner">
+        <div class="section-label reveal">Blog</div>
+        <h2 class="section-title reveal">Últimas entradas</h2>
+        <p class="section-desc reveal">Reflexiones, proyectos y todo lo que vale la pena escribir.</p>
+        <div class="blog-grid">
+            {% for post in site.posts limit:6 %}
+            <a class="blog-card" href="{{ post.url }}">
+                <div class="blog-card-meta">
+                    <span class="blog-card-date">{{ post.date | date: "%b %Y" }}</span>
+                    <span class="blog-card-tag">{{ post.category }}</span>
                 </div>
-                <div class="blog-card">
-                    <div class="blog-card-meta">
-                        <span class="blog-card-date">Jun 2026</span>
-                        <span class="blog-card-tag">Tech</span>
-                    </div>
-                    <div class="blog-card-title">Cómo construí este sitio desde cero</div>
-                    <div class="blog-card-excerpt">De un dominio en Porkbun a un sitio publicado en Netlify — todo el
-                        proceso paso a paso.</div>
+                <div class="blog-card-title">{{ post.title }}</div>
+                <div class="blog-card-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- GALERÍA -->
+<section id="galeria">
+    <div class="section-inner">
+        <div class="section-label reveal">Galería</div>
+        <h2 class="section-title reveal">Proyectos en imágenes</h2>
+        <p class="section-desc reveal">Una colección visual de lo que estamos haciendo.</p>
+        <div class="gallery-grid">
+            <div class="gallery-item tall">
+                <div class="gallery-placeholder">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                        <circle cx="8.5" cy="8.5" r="1.5" />
+                        <polyline points="21 15 16 10 5 21" />
+                    </svg>
+                    <span>Foto destacada</span>
                 </div>
-                <div class="blog-card">
-                    <div class="blog-card-meta">
-                        <span class="blog-card-date">Jun 2026</span>
-                        <span class="blog-card-tag">Familia</span>
-                    </div>
-                    <div class="blog-card-title">Proyectos familiares del verano</div>
-                    <div class="blog-card-excerpt">Lo que estamos construyendo juntos este año, desde la tienda de
-                        belleza hasta nuevas aventuras.</div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                        <circle cx="8.5" cy="8.5" r="1.5" />
+                        <polyline points="21 15 16 10 5 21" />
+                    </svg>
+                    <span>Proyecto</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                        <circle cx="8.5" cy="8.5" r="1.5" />
+                        <polyline points="21 15 16 10 5 21" />
+                    </svg>
+                    <span>Proyecto</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                        <circle cx="8.5" cy="8.5" r="1.5" />
+                        <polyline points="21 15 16 10 5 21" />
+                    </svg>
+                    <span>Proyecto</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                        <circle cx="8.5" cy="8.5" r="1.5" />
+                        <polyline points="21 15 16 10 5 21" />
+                    </svg>
+                    <span>Proyecto</span>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- GALERÍA -->
-    <section id="galeria">
-        <div class="section-inner">
-            <div class="section-label reveal">Galería</div>
-            <h2 class="section-title reveal">Proyectos en imágenes</h2>
-            <p class="section-desc reveal">Una colección visual de lo que estamos haciendo.</p>
-            <div class="gallery-grid">
-                <div class="gallery-item tall">
-                    <div class="gallery-placeholder">
-                        <svg viewBox="0 0 24 24">
-                            <rect x="3" y="3" width="18" height="18" rx="2" />
-                            <circle cx="8.5" cy="8.5" r="1.5" />
-                            <polyline points="21 15 16 10 5 21" />
-                        </svg>
-                        <span>Foto destacada</span>
-                    </div>
+<!-- TIENDA -->
+<section id="tienda">
+    <div class="section-inner">
+        <div class="section-label reveal">Tienda</div>
+        <h2 class="section-title reveal">CC Beauty</h2>
+        <p class="section-desc reveal">Productos de belleza seleccionados. Escríbenos por WhatsApp para hacer tu pedido.
+        </p>
+        <div class="shop-grid">
+            <div class="shop-card">
+                <div class="shop-card-img">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z" />
+                        <circle cx="12" cy="9" r="2.5" />
+                    </svg>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        <svg viewBox="0 0 24 24">
-                            <rect x="3" y="3" width="18" height="18" rx="2" />
-                            <circle cx="8.5" cy="8.5" r="1.5" />
-                            <polyline points="21 15 16 10 5 21" />
-                        </svg>
-                        <span>Proyecto</span>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        <svg viewBox="0 0 24 24">
-                            <rect x="3" y="3" width="18" height="18" rx="2" />
-                            <circle cx="8.5" cy="8.5" r="1.5" />
-                            <polyline points="21 15 16 10 5 21" />
-                        </svg>
-                        <span>Proyecto</span>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        <svg viewBox="0 0 24 24">
-                            <rect x="3" y="3" width="18" height="18" rx="2" />
-                            <circle cx="8.5" cy="8.5" r="1.5" />
-                            <polyline points="21 15 16 10 5 21" />
-                        </svg>
-                        <span>Proyecto</span>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        <svg viewBox="0 0 24 24">
-                            <rect x="3" y="3" width="18" height="18" rx="2" />
-                            <circle cx="8.5" cy="8.5" r="1.5" />
-                            <polyline points="21 15 16 10 5 21" />
-                        </svg>
-                        <span>Proyecto</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- TIENDA -->
-    <section id="tienda">
-        <div class="section-inner">
-            <div class="section-label reveal">Tienda</div>
-            <h2 class="section-title reveal">CC Beauty</h2>
-            <p class="section-desc reveal">Productos de belleza seleccionados. Escríbenos por WhatsApp para hacer tu
-                pedido.</p>
-            <div class="shop-grid">
-                <div class="shop-card">
-                    <div class="shop-card-img">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z" />
-                            <circle cx="12" cy="9" r="2.5" />
-                        </svg>
-                    </div>
-                    <div class="shop-card-body">
-                        <div class="shop-card-name">Pixi Glow Tonic</div>
-                        <div class="shop-card-desc">Tónico exfoliante con ácido glicólico al 5%. Piel radiante desde la
-                            primera semana.</div>
-                        <a href="https://wa.me/56989027570?text=Hola,%20quiero%20pedir%20Pixi%20Glow%20Tonic"
-                            class="shop-btn" target="_blank">
-                            <svg viewBox="0 0 24 24">
-                                <path
-                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-                                <path
-                                    d="M11.999 2C6.477 2 2 6.477 2 12c0 1.99.576 3.844 1.571 5.408L2 22l4.739-1.542A9.962 9.962 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"
-                                    fill-rule="evenodd" />
-                            </svg>
-                            Pedir por WhatsApp
-                        </a>
-                    </div>
-                </div>
-                <div class="shop-card">
-                    <div class="shop-card-img">
+                <div class="shop-card-body">
+                    <div class="shop-card-name">Pixi Glow Tonic</div>
+                    <div class="shop-card-desc">Tónico exfoliante con ácido glicólico al 5%.</div>
+                    <a href="https://wa.me/56989027570?text=Hola,%20quiero%20pedir%20Pixi%20Glow%20Tonic"
+                        class="shop-btn" target="_blank">
                         <svg viewBox="0 0 24 24">
                             <path
-                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                            <path
+                                d="M11.999 2C6.477 2 2 6.477 2 12c0 1.99.576 3.844 1.571 5.408L2 22l4.739-1.542A9.962 9.962 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"
+                                fill-rule="evenodd" />
                         </svg>
-                    </div>
-                    <div class="shop-card-body">
-                        <div class="shop-card-name">Skintreats Vitamin C</div>
-                        <div class="shop-card-desc">Sérum iluminador con vitamina C pura. Reduce manchas y unifica el
-                            tono de la piel.</div>
-                        <a href="https://wa.me/56989027570?text=Hola,%20quiero%20pedir%20Skintreats%20Vitamin%20C"
-                            class="shop-btn" target="_blank">
-                            <svg viewBox="0 0 24 24">
-                                <path
-                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-                                <path
-                                    d="M11.999 2C6.477 2 2 6.477 2 12c0 1.99.576 3.844 1.571 5.408L2 22l4.739-1.542A9.962 9.962 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"
-                                    fill-rule="evenodd" />
-                            </svg>
-                            Pedir por WhatsApp
-                        </a>
-                    </div>
+                        Pedir por WhatsApp
+                    </a>
                 </div>
-                <div class="shop-card">
-                    <div class="shop-card-img">
+            </div>
+            <div class="shop-card">
+                <div class="shop-card-img">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                    </svg>
+                </div>
+                <div class="shop-card-body">
+                    <div class="shop-card-name">Skintreats Vitamin C</div>
+                    <div class="shop-card-desc">Sérum iluminador con vitamina C pura.</div>
+                    <a href="https://wa.me/56989027570?text=Hola,%20quiero%20pedir%20Skintreats%20Vitamin%20C"
+                        class="shop-btn" target="_blank">
                         <svg viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="10" />
-                            <path d="M8 14s1.5 2 4 2 4-2 4-2" />
-                            <line x1="9" y1="9" x2="9.01" y2="9" />
-                            <line x1="15" y1="9" x2="15.01" y2="9" />
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                            <path
+                                d="M11.999 2C6.477 2 2 6.477 2 12c0 1.99.576 3.844 1.571 5.408L2 22l4.739-1.542A9.962 9.962 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"
+                                fill-rule="evenodd" />
                         </svg>
-                    </div>
-                    <div class="shop-card-body">
-                        <div class="shop-card-name">Rose Oil Cleanser</div>
-                        <div class="shop-card-desc">Aceite limpiador con rosa mosqueta. Disuelve el maquillaje sin
-                            resecar la piel.</div>
-                        <a href="https://wa.me/56989027570?text=Hola,%20quiero%20pedir%20Rose%20Oil%20Cleanser"
-                            class="shop-btn" target="_blank">
-                            <svg viewBox="0 0 24 24">
-                                <path
-                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-                                <path
-                                    d="M11.999 2C6.477 2 2 6.477 2 12c0 1.99.576 3.844 1.571 5.408L2 22l4.739-1.542A9.962 9.962 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"
-                                    fill-rule="evenodd" />
-                            </svg>
-                            Pedir por WhatsApp
-                        </a>
-                    </div>
+                        Pedir por WhatsApp
+                    </a>
+                </div>
+            </div>
+            <div class="shop-card">
+                <div class="shop-card-img">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+                        <line x1="9" y1="9" x2="9.01" y2="9" />
+                        <line x1="15" y1="9" x2="15.01" y2="9" />
+                    </svg>
+                </div>
+                <div class="shop-card-body">
+                    <div class="shop-card-name">Rose Oil Cleanser</div>
+                    <div class="shop-card-desc">Aceite limpiador con rosa mosqueta.</div>
+                    <a href="https://wa.me/56989027570?text=Hola,%20quiero%20pedir%20Rose%20Oil%20Cleanser"
+                        class="shop-btn" target="_blank">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                            <path
+                                d="M11.999 2C6.477 2 2 6.477 2 12c0 1.99.576 3.844 1.571 5.408L2 22l4.739-1.542A9.962 9.962 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"
+                                fill-rule="evenodd" />
+                        </svg>
+                        Pedir por WhatsApp
+                    </a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- FOOTER -->
-    <footer id="contacto">
-        <div class="footer-logo">Canessa</div>
-        <div class="footer-info">Iquique, Chile · 2026</div>
-    </footer>
+<script>
+    const nav = document.getElementById('nav');
+    const heroBg = document.getElementById('hero-bg');
+    const heroContent = document.getElementById('hero-content');
+    const toggle = document.getElementById('nav-toggle');
+    const navLinks = document.getElementById('nav-links');
 
-    <script>
-        const nav = document.getElementById('nav');
-        const heroBg = document.getElementById('hero-bg');
-        const heroContent = document.getElementById('hero-content');
-        const toggle = document.getElementById('nav-toggle');
-        const navLinks = document.getElementById('nav-links');
+    window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        if (y > 60) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+        heroBg.style.transform = `translateY(${y * 0.4}px)`;
+        heroContent.style.transform = `translateY(${y * 0.25}px)`;
+        heroContent.style.opacity = 1 - y / 400;
+    }, { passive: true });
 
-        window.addEventListener('scroll', () => {
-            const y = window.scrollY;
+    toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
 
-            if (y > 60) nav.classList.add('scrolled');
-            else nav.classList.remove('scrolled');
-
-            heroBg.style.transform = `translateY(${y * 0.4}px)`;
-            heroContent.style.transform = `translateY(${y * 0.25}px)`;
-            heroContent.style.opacity = 1 - y / 400;
-        }, { passive: true });
-
-        toggle.addEventListener('click', () => {
-            navLinks.classList.toggle('open');
+    const reveals = document.querySelectorAll('.reveal, .blog-card, .gallery-item, .shop-card');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => entry.target.classList.add('visible'), i * 80);
+                observer.unobserve(entry.target);
+            }
         });
-        navLinks.querySelectorAll('a').forEach(a => {
-            a.addEventListener('click', () => navLinks.classList.remove('open'));
-        });
-
-        const reveals = document.querySelectorAll('.reveal, .blog-card, .gallery-item, .shop-card');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, i) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => entry.target.classList.add('visible'), i * 80);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.12 });
-        reveals.forEach(el => observer.observe(el));
-    </script>
-    <script>
-        if (window.netlifyIdentity) {
-            window.netlifyIdentity.on("init", user => {
-                if (!user) {
-                    window.netlifyIdentity.on("login", () => {
-                        document.location.href = "/admin/";
-                    });
-                }
-            });
-        }
-    </script>
-</body>
-
-</html>
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+</script>

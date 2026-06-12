@@ -1,4 +1,5 @@
 ---
+layout: post
 title: Como construi este blog desde cero, en 15 minutos
 date: 2026-06-11T22:50:00.000-04:00
 category: Tech

@@ -11,6 +11,7 @@ collections:
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
+      - { label: "Layout", name: "layout", widget: "hidden", default: "post" }
       - { label: "Título", name: "title", widget: "string" }
       - { label: "Fecha", name: "date", widget: "datetime" }
       - { label: "Categoría", name: "category", widget: "select", options: ["Personal", "Tech", "Familia", "Belleza"] }
