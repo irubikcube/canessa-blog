@@ -1,0 +1,343 @@
+---
+layout: default
+title: Hablemos
+permalink: /contacto/
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hablemos — Cristian Canessa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #2e2e2b;
+      font-family: 'Inter', sans-serif;
+      color: #eceae4;
+      min-height: 100vh;
+    }
+
+    .hb-section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 5rem 2rem 4rem;
+    }
+
+    .hb-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #777770;
+      margin-bottom: 1rem;
+    }
+
+    .hb-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(40px, 6vw, 60px);
+      font-weight: 400;
+      line-height: 1.05;
+      color: #eceae4;
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+
+    .hb-subtitle {
+      font-size: 14px;
+      color: #999990;
+      font-weight: 300;
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+      max-width: 340px;
+    }
+
+    .hb-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    @media (max-width: 640px) {
+      .hb-layout { grid-template-columns: 1fr; }
+      .hb-right { padding-top: 0; }
+    }
+
+    .hb-form-group { margin-bottom: 1.25rem; }
+
+    .hb-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #666660;
+      margin-bottom: 6px;
+    }
+
+    .hb-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid #44443f;
+      border-radius: 0;
+      padding: 8px 0;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      color: #eceae4;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    .hb-input:focus { border-bottom-color: #eceae4; }
+
+    .hb-input::placeholder {
+      color: #555550;
+      font-weight: 300;
+    }
+
+    textarea.hb-input {
+      resize: none;
+      height: 80px;
+      padding-top: 8px;
+    }
+
+    .hb-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 1.5rem;
+      padding: 9px 20px;
+      background: transparent;
+      border: 1px solid rgba(236, 234, 228, 0.35);
+      border-radius: 3px;
+      font-size: 12px;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #eceae4;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .hb-btn:hover {
+      background: rgba(236, 234, 228, 0.08);
+      border-color: rgba(236, 234, 228, 0.6);
+    }
+
+    .hb-btn svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .hb-right { padding-top: 0.5rem; }
+
+    .hb-map-wrap {
+      width: 100%;
+      height: 160px;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 0.5px solid #3a3a36;
+      margin-bottom: 1.5rem;
+    }
+
+    .hb-map-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      filter: grayscale(1) invert(0.85) brightness(0.55);
+      opacity: 0.75;
+    }
+
+    .hb-location {
+      font-size: 12px;
+      color: #777770;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .hb-location svg {
+      width: 13px;
+      height: 13px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    .hb-divider {
+      height: 0.5px;
+      background: #3a3a36;
+      margin: 2rem 0;
+    }
+
+    .hb-social-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #666660;
+      margin-bottom: 0.75rem;
+    }
+
+    .hb-social {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .hb-social a {
+      color: #666660;
+      text-decoration: none;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+    }
+
+    .hb-social a:hover { color: #eceae4; }
+
+    .hb-social svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .hb-vcf {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #666660;
+      text-decoration: none;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      margin-top: 1.5rem;
+      transition: color 0.2s;
+    }
+
+    .hb-vcf:hover { color: #eceae4; }
+
+    .hb-vcf svg {
+      width: 13px;
+      height: 13px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+  </style>
+</head>
+<body>
+
+<section class="hb-section">
+
+  <p class="hb-eyebrow">Contacto</p>
+  <h1 class="hb-title">Hablemos</h1>
+  <p class="hb-subtitle">¿Tienes un proyecto, una idea o simplemente quieres saludar? Escríbeme.</p>
+
+  <div class="hb-layout">
+
+    <!-- Formulario -->
+    <div class="hb-left">
+      <form name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contacto" />
+        <p style="display:none"><label>No llenar: <input name="bot-field" /></label></p>
+
+        <div class="hb-form-group">
+          <label class="hb-label" for="nombre">Nombre</label>
+          <input class="hb-input" id="nombre" name="nombre" type="text" placeholder="Tu nombre" required />
+        </div>
+
+        <div class="hb-form-group">
+          <label class="hb-label" for="correo">Correo</label>
+          <input class="hb-input" id="correo" name="email" type="email" placeholder="tu@email.com" required />
+        </div>
+
+        <div class="hb-form-group">
+          <label class="hb-label" for="mensaje">Mensaje</label>
+          <textarea class="hb-input" id="mensaje" name="mensaje" placeholder="Escríbeme…" required></textarea>
+        </div>
+
+        <button class="hb-btn" type="submit">
+          Enviar
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+
+      </form>
+    </div>
+
+    <!-- Mapa + datos -->
+    <div class="hb-right">
+
+      <div class="hb-map-wrap">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54000!2d-70.1357!3d-20.2141!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915193a64cfe1abb%3A0x4ac99c8b8b7b7d77!2sIquique%2C+Tarapac%C3%A1!5e0!3m2!1ses!2scl!4v1"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Mapa de Iquique">
+        </iframe>
+      </div>
+
+      <p class="hb-location">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        Iquique, Chile
+      </p>
+
+      <div class="hb-divider"></div>
+
+      <p class="hb-social-label">Redes</p>
+      <div class="hb-social">
+
+        <a href="https://instagram.com/TU_USUARIO" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+
+        <a href="https://facebook.com/TU_USUARIO" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+
+        <a href="https://x.com/TU_USUARIO" target="_blank" rel="noopener" aria-label="X / Twitter">
+          <svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20"/></svg>
+        </a>
+
+        <a href="mailto:tu@email.com" aria-label="Correo electrónico">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+
+      </div>
+
+      <!-- Reemplaza el href con la ruta real de tu archivo .vcf -->
+      <a href="/assets/cristian-canessa.vcf" class="hb-vcf" download>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Descargar tarjeta de contacto
+      </a>
+
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
