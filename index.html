@@ -5,221 +5,292 @@ title: Inicio
 
 <!-- HERO -->
 <section class="hero" id="hero">
-    <div class="hero-bg" id="hero-bg">
-        <div class="hero-circle hero-circle-1"></div>
-        <div class="hero-circle hero-circle-2"></div>
-        <div class="hero-circle hero-circle-3"></div>
+  <div class="hero-bg" id="hero-bg">
+    <div class="hero-circle hero-circle-1"></div>
+    <div class="hero-circle hero-circle-2"></div>
+    <div class="hero-circle hero-circle-3"></div>
+  </div>
+  <div class="hero-content" id="hero-content">
+    <div class="hero-photo-wrap">
+      <img src="/assets/profile.jpg" alt="Cristian Canessa" class="hero-photo" />
     </div>
-    <div class="hero-content" id="hero-content">
-        <div class="hero-photo-wrap">
-            <img src="/assets/profile.jpg" alt="Cristian Canessa" class="hero-photo" />
-        </div>
-        <div class="hero-text">
-            <p class="hero-eyebrow">Proyectos · Familia · Ideas</p>
-            <h1 class="hero-title">Cris<em>tian</em><br>Canessa</h1>
-            <p class="hero-sub">Un espacio personal desde Iquique, Chile 🌊</p>
-        </div>
+    <div class="hero-text">
+      <p class="hero-eyebrow">Proyectos · Familia · Ideas</p>
+      <h1 class="hero-title">Cris<em>tian</em><br>Canessa</h1>
+      <p class="hero-sub">Un espacio personal desde Iquique, Chile 🌊</p>
     </div>
-    <div class="hero-scroll">
-        <span>Scroll</span>
-        <div class="scroll-line"></div>
-    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
 </section>
 
 <!-- BLOG -->
 <section id="blog">
-    <div class="section-inner">
-        <div class="section-label reveal">Blog</div>
-        <h2 class="section-title reveal">Últimas entradas</h2>
-        <p class="section-desc reveal">Reflexiones, proyectos y todo lo que vale la pena escribir.</p>
-        <div class="blog-grid">
-            {% for post in site.posts limit:6 %}
-            <a class="blog-card" href="{{ post.url }}">
-                <div class="blog-card-meta">
-                    <span class="blog-card-date">{{ post.date | date: "%b %Y" }}</span>
-                    <span class="blog-card-tag">{{ post.category }}</span>
-                </div>
-                <div class="blog-card-title">{{ post.title }}</div>
-                <div class="blog-card-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</div>
-            </a>
-            {% endfor %}
+  <div class="section-inner">
+    <div class="section-label reveal">Blog</div>
+    <h2 class="section-title reveal">Últimas entradas</h2>
+    <p class="section-desc reveal">Reflexiones, proyectos y todo lo que vale la pena escribir.</p>
+    <div class="blog-grid">
+      {% for post in site.posts limit:6 %}
+      <a class="blog-card" href="{{ post.url }}">
+        <div class="blog-card-meta">
+          <span class="blog-card-date">{{ post.date | date: "%b %Y" }}</span>
+          <span class="blog-card-tag">{{ post.category }}</span>
         </div>
+        <div class="blog-card-title">{{ post.title }}</div>
+        <div class="blog-card-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</div>
+      </a>
+      {% endfor %}
     </div>
+  </div>
 </section>
 
 <!-- GALERÍA -->
 <section id="galeria">
-    <div class="section-inner">
-        <div class="section-label reveal">Galería</div>
-        <h2 class="section-title reveal">Proyectos en imágenes</h2>
-        <p class="section-desc reveal">Una colección visual de lo que estamos haciendo.</p>
-        <div class="gallery-grid">
-            <div class="gallery-item tall">
-                <div class="gallery-placeholder">
-                    <svg viewBox="0 0 24 24">
-                        <rect x="3" y="3" width="18" height="18" rx="2" />
-                        <circle cx="8.5" cy="8.5" r="1.5" />
-                        <polyline points="21 15 16 10 5 21" />
-                    </svg>
-                    <span>Foto destacada</span>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">
-                    <svg viewBox="0 0 24 24">
-                        <rect x="3" y="3" width="18" height="18" rx="2" />
-                        <circle cx="8.5" cy="8.5" r="1.5" />
-                        <polyline points="21 15 16 10 5 21" />
-                    </svg>
-                    <span>Proyecto</span>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">
-                    <svg viewBox="0 0 24 24">
-                        <rect x="3" y="3" width="18" height="18" rx="2" />
-                        <circle cx="8.5" cy="8.5" r="1.5" />
-                        <polyline points="21 15 16 10 5 21" />
-                    </svg>
-                    <span>Proyecto</span>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">
-                    <svg viewBox="0 0 24 24">
-                        <rect x="3" y="3" width="18" height="18" rx="2" />
-                        <circle cx="8.5" cy="8.5" r="1.5" />
-                        <polyline points="21 15 16 10 5 21" />
-                    </svg>
-                    <span>Proyecto</span>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">
-                    <svg viewBox="0 0 24 24">
-                        <rect x="3" y="3" width="18" height="18" rx="2" />
-                        <circle cx="8.5" cy="8.5" r="1.5" />
-                        <polyline points="21 15 16 10 5 21" />
-                    </svg>
-                    <span>Proyecto</span>
-                </div>
-            </div>
+  <div class="section-inner">
+    <div class="section-label reveal">Galería</div>
+    <h2 class="section-title reveal">Proyectos en imágenes</h2>
+    <p class="section-desc reveal">Una colección visual de lo que estamos haciendo.</p>
+    <div class="gallery-grid">
+      <div class="gallery-item tall">
+        <div class="gallery-placeholder">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <circle cx="8.5" cy="8.5" r="1.5" />
+            <polyline points="21 15 16 10 5 21" />
+          </svg>
+          <span>Foto destacada</span>
         </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <circle cx="8.5" cy="8.5" r="1.5" />
+            <polyline points="21 15 16 10 5 21" />
+          </svg>
+          <span>Proyecto</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <circle cx="8.5" cy="8.5" r="1.5" />
+            <polyline points="21 15 16 10 5 21" />
+          </svg>
+          <span>Proyecto</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <circle cx="8.5" cy="8.5" r="1.5" />
+            <polyline points="21 15 16 10 5 21" />
+          </svg>
+          <span>Proyecto</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <circle cx="8.5" cy="8.5" r="1.5" />
+            <polyline points="21 15 16 10 5 21" />
+          </svg>
+          <span>Proyecto</span>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
 
 <!-- TIENDA -->
 <section id="tienda">
-    <div class="section-inner">
-        <div class="section-label reveal">Tienda</div>
-        <h2 class="section-title reveal">CC Beauty</h2>
-        <p class="section-desc reveal">Productos de belleza seleccionados. Escríbenos por WhatsApp para hacer tu pedido.
-        </p>
-        <div class="shop-grid">
-            <div class="shop-card">
-                <div class="shop-card-img">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z" />
-                        <circle cx="12" cy="9" r="2.5" />
-                    </svg>
-                </div>
-                <div class="shop-card-body">
-                    <div class="shop-card-name">Pixi Glow Tonic</div>
-                    <div class="shop-card-desc">Tónico exfoliante con ácido glicólico al 5%.</div>
-                    <a href="https://wa.me/56989027570?text=Hola,%20quiero%20pedir%20Pixi%20Glow%20Tonic"
-                        class="shop-btn" target="_blank">
-                        <svg viewBox="0 0 24 24">
-                            <path
-                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-                            <path
-                                d="M11.999 2C6.477 2 2 6.477 2 12c0 1.99.576 3.844 1.571 5.408L2 22l4.739-1.542A9.962 9.962 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"
-                                fill-rule="evenodd" />
-                        </svg>
-                        Pedir por WhatsApp
-                    </a>
-                </div>
-            </div>
-            <div class="shop-card">
-                <div class="shop-card-img">
-                    <svg viewBox="0 0 24 24">
-                        <path
-                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                    </svg>
-                </div>
-                <div class="shop-card-body">
-                    <div class="shop-card-name">Skintreats Vitamin C</div>
-                    <div class="shop-card-desc">Sérum iluminador con vitamina C pura.</div>
-                    <a href="https://wa.me/56989027570?text=Hola,%20quiero%20pedir%20Skintreats%20Vitamin%20C"
-                        class="shop-btn" target="_blank">
-                        <svg viewBox="0 0 24 24">
-                            <path
-                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-                            <path
-                                d="M11.999 2C6.477 2 2 6.477 2 12c0 1.99.576 3.844 1.571 5.408L2 22l4.739-1.542A9.962 9.962 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"
-                                fill-rule="evenodd" />
-                        </svg>
-                        Pedir por WhatsApp
-                    </a>
-                </div>
-            </div>
-            <div class="shop-card">
-                <div class="shop-card-img">
-                    <svg viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="10" />
-                        <path d="M8 14s1.5 2 4 2 4-2 4-2" />
-                        <line x1="9" y1="9" x2="9.01" y2="9" />
-                        <line x1="15" y1="9" x2="15.01" y2="9" />
-                    </svg>
-                </div>
-                <div class="shop-card-body">
-                    <div class="shop-card-name">Rose Oil Cleanser</div>
-                    <div class="shop-card-desc">Aceite limpiador con rosa mosqueta.</div>
-                    <a href="https://wa.me/56989027570?text=Hola,%20quiero%20pedir%20Rose%20Oil%20Cleanser"
-                        class="shop-btn" target="_blank">
-                        <svg viewBox="0 0 24 24">
-                            <path
-                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-                            <path
-                                d="M11.999 2C6.477 2 2 6.477 2 12c0 1.99.576 3.844 1.571 5.408L2 22l4.739-1.542A9.962 9.962 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"
-                                fill-rule="evenodd" />
-                        </svg>
-                        Pedir por WhatsApp
-                    </a>
-                </div>
-            </div>
+  <div class="section-inner">
+    <div class="section-label reveal">Tienda</div>
+    <h2 class="section-title reveal">CC Beauty</h2>
+    <p class="section-desc reveal">Productos de belleza seleccionados. Escríbenos por WhatsApp para hacer tu pedido.</p>
+    <div class="shop-grid">
+      <div class="shop-card">
+        <div class="shop-card-img">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z" />
+            <circle cx="12" cy="9" r="2.5" />
+          </svg>
         </div>
+        <div class="shop-card-body">
+          <div class="shop-card-name">Pixi Glow Tonic</div>
+          <div class="shop-card-desc">Tónico exfoliante con ácido glicólico al 5%.</div>
+          <a href="https://wa.me/56989027570?text=Hola,%20quiero%20pedir%20Pixi%20Glow%20Tonic" class="shop-btn"
+            target="_blank">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+              <path
+                d="M11.999 2C6.477 2 2 6.477 2 12c0 1.99.576 3.844 1.571 5.408L2 22l4.739-1.542A9.962 9.962 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"
+                fill-rule="evenodd" />
+            </svg>
+            Pedir por WhatsApp
+          </a>
+        </div>
+      </div>
+      <div class="shop-card">
+        <div class="shop-card-img">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+          </svg>
+        </div>
+        <div class="shop-card-body">
+          <div class="shop-card-name">Skintreats Vitamin C</div>
+          <div class="shop-card-desc">Sérum iluminador con vitamina C pura.</div>
+          <a href="https://wa.me/56989027570?text=Hola,%20quiero%20pedir%20Skintreats%20Vitamin%20C" class="shop-btn"
+            target="_blank">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+              <path
+                d="M11.999 2C6.477 2 2 6.477 2 12c0 1.99.576 3.844 1.571 5.408L2 22l4.739-1.542A9.962 9.962 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"
+                fill-rule="evenodd" />
+            </svg>
+            Pedir por WhatsApp
+          </a>
+        </div>
+      </div>
+      <div class="shop-card">
+        <div class="shop-card-img">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+            <line x1="9" y1="9" x2="9.01" y2="9" />
+            <line x1="15" y1="9" x2="15.01" y2="9" />
+          </svg>
+        </div>
+        <div class="shop-card-body">
+          <div class="shop-card-name">Rose Oil Cleanser</div>
+          <div class="shop-card-desc">Aceite limpiador con rosa mosqueta.</div>
+          <a href="https://wa.me/56989027570?text=Hola,%20quiero%20pedir%20Rose%20Oil%20Cleanser" class="shop-btn"
+            target="_blank">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+              <path
+                d="M11.999 2C6.477 2 2 6.477 2 12c0 1.99.576 3.844 1.571 5.408L2 22l4.739-1.542A9.962 9.962 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"
+                fill-rule="evenodd" />
+            </svg>
+            Pedir por WhatsApp
+          </a>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="section-inner">
+    <div class="section-label reveal">Contacto</div>
+    <h2 class="section-title reveal">Hablemos</h2>
+    <p class="contact-intro reveal">¿Tienes un proyecto, una idea o simplemente quieres saludar?<br>Escríbeme y te
+      respondo a la brevedad.</p>
+
+    <form name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form reveal">
+      <input type="hidden" name="form-name" value="contacto" />
+      <p hidden><input name="bot-field" /></p>
+      <div class="form-row">
+        <div class="form-field">
+          <span class="field-label">Nombre</span>
+          <input type="text" name="nombre" placeholder="Tu nombre" required />
+        </div>
+        <div class="form-field">
+          <span class="field-label">E-Mail</span>
+          <input type="email" name="email" placeholder="tu@email.com" required />
+        </div>
+      </div>
+      <div class="form-row form-row-message">
+        <div class="form-field form-field-grow">
+          <span class="field-label">Tu mensaje</span>
+          <input type="text" name="mensaje" placeholder="Escríbeme..." required />
+        </div>
+        <button type="submit" class="form-submit">Enviar</button>
+      </div>
+    </form>
+
+    <div class="contact-social reveal">
+      <span class="social-line"></span>
+      <a href="https://instagram.com/TU_USUARIO" target="_blank" class="social-icon" aria-label="Instagram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2" y="2" width="20" height="20" rx="5" />
+          <circle cx="12" cy="12" r="4" />
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+        </svg>
+      </a>
+      <a href="https://facebook.com/canessa" target="_blank" class="social-icon" aria-label="Facebook">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+        </svg>
+      </a>
+      <a href="https://x.com/TU_USUARIO" target="_blank" class="social-icon" aria-label="X">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 4l16 16M20 4L4 20" />
+        </svg>
+      </a>
+      <a href="mailto:cristianandres1@me.com" class="social-icon" aria-label="Email">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+          <polyline points="22,6 12,13 2,6" />
+        </svg>
+      </a>
+      <span class="social-line"></span>
+    </div>
+
+    <div class="contact-map reveal">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60174.46!2d-70.1356!3d-20.2133!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9151898330f0f0f1%3A0x9a3a3a3a3a3a3a3a!2sIquique%2C+Tarapac%C3%A1%2C+Chile!5e0!3m2!1ses!2scl!4v1"
+        width="100%" height="220"
+        style="border:0; border-radius:8px; filter:grayscale(100%) contrast(0.85) opacity(0.7);" allowfullscreen=""
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+
+    <div class="contact-footer reveal">
+      <a href="/assets/cristian-canessa.vcf" download class="vcard-btn">↓ Descargar tarjeta de contacto</a>
+    </div>
+  </div>
 </section>
 
 <script>
-    const nav = document.getElementById('nav');
-    const heroBg = document.getElementById('hero-bg');
-    const heroContent = document.getElementById('hero-content');
-    const toggle = document.getElementById('nav-toggle');
-    const navLinks = document.getElementById('nav-links');
+  const nav = document.getElementById('nav');
+  const heroBg = document.getElementById('hero-bg');
+  const heroContent = document.getElementById('hero-content');
+  const toggle = document.getElementById('nav-toggle');
+  const navLinks = document.getElementById('nav-links');
 
-    window.addEventListener('scroll', () => {
-        const y = window.scrollY;
-        if (y > 60) nav.classList.add('scrolled');
-        else nav.classList.remove('scrolled');
-        heroBg.style.transform = `translateY(${y * 0.4}px)`;
-        heroContent.style.transform = `translateY(${y * 0.25}px)`;
-        heroContent.style.opacity = 1 - y / 400;
-    }, { passive: true });
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y > 60) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+    heroBg.style.transform = `translateY(${y * 0.4}px)`;
+    heroContent.style.transform = `translateY(${y * 0.25}px)`;
+    heroContent.style.opacity = 1 - y / 400;
+  }, { passive: true });
 
-    toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
-    navLinks.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => navLinks.classList.remove('open'));
+  toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+
+  const reveals = document.querySelectorAll('.reveal, .blog-card, .gallery-item, .shop-card');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
     });
-
-    const reveals = document.querySelectorAll('.reveal, .blog-card, .gallery-item, .shop-card');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, i) => {
-            if (entry.isIntersecting) {
-                setTimeout(() => entry.target.classList.add('visible'), i * 80);
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.12 });
-    reveals.forEach(el => observer.observe(el));
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
 </script>
